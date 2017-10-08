@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://unpkg.com/react/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+    <!-- Font Awesome -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <title>Life Warnings</title>
+  </head>
+  <body>
+    <div id="app">React has not rendered yet</div>
+    <script type="text/babel">
+      class Warnings extends React.Component {
+        handleButtonStove(){
+          alert("Ouch this is HOT!!!");
+        }
+
+        handleButtonSlurpee(){
+          alert("Brain FREEZE!");
+        }
+
+        render(){
+          return(
+            <div>
+              <h1>Life Warnings</h1>
+              <button onMouseOver={this.handleButtonStove}>Touch Stove!</button>
+              <button onMouseOver={this.handleButtonSlurpee}>Drink Slurpee Really Fast!</button>
+            </div>
+          );
+        }
+      }
+
+      ReactDOM.render(
+        <Warnings/>,
+        document.getElementById("app")
+      );
+    </script>
+  </body>
+</html>

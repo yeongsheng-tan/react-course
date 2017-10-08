@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://unpkg.com/react/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+    <!-- Font Awesome -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <title>FriendLy</title>
+  </head>
+  <body>
+    <div id="app">React has not rendered yet</div>
+    <script type="text/babel">
+      var people = [{id: 1, gender: "male", name:"YS", img: "https://pbs.twimg.com/profile_images/913302696085544960/zScHn7jy_400x400.jpg"},
+                    {id: 2, gender: "male", name:"Rob", img: "https://pbs.twimg.com/profile_images/699422966556168193/zUm4vhAo_400x400.jpg"},
+                    {id: 3, gender: "male", name:"Stephen", img: "https://pbs.twimg.com/profile_images/621845465496039428/SgXekq63_400x400.jpg"},
+                    {id: 4, gender: "female", name:"Sandi", img: "https://pbs.twimg.com/profile_images/2839753318/bbc02488eec4b91964375b0da9955be2_400x400.jpeg"},
+                    {id: 5, gender: "male", name:"Joe", img: "https://pbs.twimg.com/profile_images/625217739280396288/LI3MIbLg_400x400.jpg"},
+                    {id: 6, gender: "male", name:"Jose", img: "https://pbs.twimg.com/profile_images/667973757181431808/IdQgSAH__400x400.jpg"},
+                    {id: 7, gender: "female", name:"Sarah", img: "https://pbs.twimg.com/profile_images/900926526182445058/qOi3HTwf_400x400.jpg"},
+                    {id: 8, gender: "male", name:"Chris", img: "https://pbs.twimg.com/profile_images/745460792833773568/iOJ67Nsd_400x400.jpg"},
+                    {id: 9, gender: "female", name:"Veronica", img: "https://pbs.twimg.com/profile_images/909526324485570560/lGpNlIKx_400x400.jpg"},
+                    {id: 10, gender: "male", name:"Evan", img: "https://pbs.twimg.com/profile_images/443794371586977792/NxKUNpOQ_400x400.jpeg"},
+                    {id: 11, gender: "male", name:"Richard", img: "https://pbs.twimg.com/profile_images/635812303342956545/Fo4RyEgH_400x400.jpg"},
+                    {id: 12, gender: "female", name:"Terezka", img: "https://pbs.twimg.com/profile_images/824242201655910400/mY7NMaDE_400x400.jpg"},
+                    {id: 13, gender: "female", name:"Tessa", img: "https://pbs.twimg.com/profile_images/539600596605489153/lVz54JsS_400x400.jpeg"},
+                    {id: 14, gender: "male", name:"Terry", img: "https://pbs.twimg.com/card_img/911491223214592000/AES0n6V0?format=jpg&name=144x144_2"},
+                    {id: 15, gender: "male", name:"Bas", img: "https://pbs.twimg.com/profile_images/84861127/2008_bas_smaller_400x400.jpg"},
+                    {id: 16, gender: "female", name:"Lauren", img: "https://pbs.twimg.com/profile_images/881535121484009472/mmPDDrHO_400x400.jpg"},
+                    {id: 17, gender: "female", name:"Tetiana", img: "https://pbs.twimg.com/profile_images/736564172742393856/3IcNfu1j_400x400.jpg"},
+                    {id: 18, gender: "male", name:"Luke", img: "https://2016.elm-conf.us/images/speakers/LukeWestby.jpg"},
+                    {id: 19, gender: "female", name:"Jessica", img: "https://pbs.twimg.com/profile_images/893202935009615872/ef-H8FtJ_400x400.jpg"},
+                    {id: 20, gender: "male", name:"Ossi", img: "https://2016.elm-conf.us/images/speakers/OssiHanhinen.jpg"},
+                    {id: 21, gender: "female", name:"Rachel", img: "https://www.launchcode.org/assets/rachel-b557b94f3667151831b3eeb2045c8402.png"}
+                   ];
+
+      function FriendLy(props) {
+        var friendlyStyle = {
+          display: 'inline-block',
+          margin: 20,
+          height: 300,
+          width: 200,
+          padding: 0,
+          backgroundColor: "#FFF",
+          WebkitFilter: "drop-shadow(0px 0px 5px #555)",
+          filter: "drop-shadow(0px 0px 5px #555)"
+        }
+
+        var maleItem = props.people.filter(function(people){
+          return people.gender === 'male';
+        }).map(function(person){
+          return(<div key={person.id} style={friendlyStyle}>
+              <Avatar profileImage={person.img}/>
+              <UserName name={person.name}/>
+              <GetConnected/>
+            </div>);
+        });
+
+        var femaleItem = props.people.filter(function(people){
+          return people.gender === 'female';
+        }).map(function(person){
+            return(<div key={person.id} style={friendlyStyle}>
+                <Avatar profileImage={person.img}/>
+                <UserName name={person.name}/>
+                <GetConnected/>
+              </div>);
+          });
+
+        return(
+          <div>
+            <h1>Males</h1>
+            <div>{maleItem}</div>
+            <hr/>
+            <h1>Females</h1>
+            <div>{femaleItem}</div>
+          </div>
+        );
+      }
+
+      function Avatar(props) {
+        var avatarStyle = {
+          marginLeft: 27,
+          marginTop: 20,
+          width: 150,
+          height: 150,
+          borderRadius: "50%"
+        }
+        return(
+          <img style={avatarStyle} alt="profile pic" src={props.profileImage}/>
+        );
+      }
+
+      function UserName(props) {
+        var nameStyle = {
+          fontSize: 24,
+          textAlign: "center",
+          fontFamily: "Arial, Helvetica, sans-serif",
+          margin: 20
+        }
+        return(
+          <h1 style={nameStyle}>{props.name}</h1>
+        );
+      }
+
+      function GetConnected() {
+        var getConnectedStyle = {
+          marginLeft: 15
+        }
+        return(
+          <div style={getConnectedStyle}>
+            <Like/>
+            <Share/>
+            <Add/>
+          </div>
+        );
+      }
+
+      var iconStyle = {
+        margin: 20
+      }
+
+      function Like() {
+        return(
+          <i style={iconStyle} className="fa fa-thumbs-o-up" aria-hidden="true"></i>
+        );
+      }
+
+      function Share() {
+        return(
+          <i style={iconStyle} className="fa fa-share" aria-hidden="true"></i>
+        );
+      }
+
+      function Add() {
+        return(
+          <i style={iconStyle} className="fa fa-users" aria-hidden="true"></i>
+        );
+      }
+
+      ReactDOM.render(
+        <FriendLy people={people}/>,
+        document.getElementById("app")
+      );
+    </script>
+  </body>
+</html>

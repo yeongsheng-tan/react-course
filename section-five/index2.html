@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://unpkg.com/react/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+    <!-- Font Awesome -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <title>Class Components Props</title>
+  </head>
+  <body>
+    <div id="app">React has not rendered yet</div>
+    <script type="text/babel">
+      class PersonGreeting extends React.Component {
+        render(){
+          var personStyle = {
+            height: 300,
+            width: 300,
+            backgroundColor: this.props.color
+          }
+
+          return(
+            <div style={personStyle}>Hello, {this.props.name}!</div>
+          );
+        }
+      }
+      ReactDOM.render(
+        <div>
+          <PersonGreeting color="tomato" name="Jimmy"/>
+          <PersonGreeting color="pink" name="Sarah"/>
+          <PersonGreeting color="cyan" name="Roger"/>
+        </div>,
+        document.getElementById("app")
+      );
+    </script>
+  </body>
+</html>
